@@ -39,10 +39,7 @@ var TriSysAPI =
                 try
                 {
                     if (!TriSysAPI.Operators.isEmpty(payloadObject.URL))
-                    {
                         sURL = sAPIurl + payloadObject.URL;
-                        //alert('API: ' + sURL);
-                    }
 
                     if (!TriSysAPI.Operators.isEmpty(payloadObject.OutboundDataPacket))
                         dataPacketOutbound = payloadObject.OutboundDataPacket;
@@ -118,7 +115,6 @@ var TriSysAPI =
                 data: dataPacketOutbound,
                 type: sHTTPVerb,
                 dataType: 'json',
-                //contentType: "application/json",      F****NG EVIL LINE BREAKS POST PARAMETERS
 
                 crossDomain: true,
                 cache: false,
