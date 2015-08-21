@@ -78,11 +78,12 @@ var TriSysAPI =
             }
 
             // Browser compatibility to support legacy Internet Explorer
-            TriSysSDK.Browser.CORSProxyKludge();
+            //TriSysSDK.Browser.CORSProxyKludge();
+            var bSupportsSynchronousAPI = true;
 
             if (!bAsynchronous)
             {
-                if (TriSysSDK.Browser.SupportsSynchronousAPI())
+                if (bSupportsSynchronousAPI)
                 {
                     // Turn off asynchronicity where calls must be synchronised
                     $.ajaxSetup({ async: false });
@@ -188,7 +189,7 @@ var TriSysAPI =
             var payloadObject = {};
             payloadObject.URL = "Start/VersionNumber";
 
-            if(!fnCallback)
+            if (!fnCallback)
                 payloadObject.Asynchronous = false;
 
             var sVersion = null;
@@ -237,7 +238,8 @@ var TriSysAPI =
 
         VerifyDataServicesKey: function ()
         {
-            if (!TriSysSDK.Browser.SupportsSynchronousAPI())
+            var bSupportsSynchronousAPI = true;
+            if (!bSupportsSynchronousAPI)
             {
                 var sDataServicesKey = TriSysAPI.Session.DataServicesKey();
                 if (!TriSysAPI.Operators.isEmpty(sDataServicesKey))
@@ -333,7 +335,8 @@ var TriSysAPI =
         // 22 Sep 2014: Are we connected to service API?
         isConnected: function ()
         {
-            if (TriSysSDK.Browser.SupportsSynchronousAPI())
+            var bSupportsSynchronousAPI = true;
+            if (bSupportsSynchronousAPI)
             {
                 var sIPAddress = TriSysAPI.Data.IPAddress();
                 if (!TriSysAPI.Operators.isEmpty(sIPAddress))
@@ -540,13 +543,13 @@ var TriSysAPI =
             }
         },
 
-        Delete: function(sCookieName)
+        Delete: function (sCookieName)
         {
             try
             {
                 window.localStorage.removeItem(sCookieName);
             }
-            catch(err)
+            catch (err)
             {
 
             }
