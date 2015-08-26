@@ -741,6 +741,67 @@ var TriSysAPI =
             TriSysAPI.Data.PostToWebAPI(payloadObject);
 
             return true;
+        },
+
+        UploadFiles: function (files, fnCallback)
+        {
+            if (!files)
+                return;
+
+            var formData = new FormData();
+            for (var i = 0; i < files.length; i++)
+            {
+                var trisysFile = files[i];
+                formData.append("trisysFile", trisysFile);
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "https://api.trisys.co.uk/files/uploadfile",
+                contentType: false,
+                processData: false,
+                data: formData,
+                cache: false,
+                crossDomain: true,
+                beforeSend: function (xhr)
+                {
+                    xhr.setRequestHeader('SiteKey', TriSysAPI.Session.DeveloperSiteKey());
+
+                    var sDataServicesKey = TriSysAPI.Session.DataServicesKey();
+                    if (!TriSysAPI.Operators.isEmpty(sDataServicesKey))
+                        xhr.setRequestHeader('DataServicesKey', sDataServicesKey);
+                },
+                success: function (result)
+                {
+                    var uploadedFiles = [];
+                    for (var i = 0; i < result.length; i++)
+                    {
+                        var sFile = result[i];
+                        uploadedFiles.push(sFile);
+                    }
+                    fnCallback(uploadedFiles);
+                },
+
+                error: function (request, status, error)
+                {
+                    alert("TriSysAPI.TriSysForWebsites.UploadFiles: " + request + status + error);
+                }
+            });
+        },
+
+        GetFileNameFromPath: function (sPath)
+        {
+            var slashes = ["/", "\\"], sName = null;
+            $.each(slashes, function (index, sSlash)
+            {
+                var i = sPath.lastIndexOf(sSlash);
+                if (i > 0)
+                {
+                    sName = sPath.substring(i + 1);
+                }
+            });
+
+            return sName;
         }
     },
     //#endregion TriSysAPI.TriSysForWebsites
