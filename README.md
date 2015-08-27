@@ -9,3 +9,5 @@ TriSys Web API is platform-agnostic, meaning that it can be called from client a
 
 TriSys Web API provides the back-end to Windows and Mac desktop applications as well as all web browsers, tablets and phone apps.
 
+Last updated: 27 August 2015
+
