@@ -679,6 +679,8 @@ var TriSysAPI =
             AgencyUserLoginCredentialsToCRM: 'TN1jMwmNpUSGNnHIiPWRW9970X20aQyW2k2XotIkMQD756u9kQt06IfItrF-h5e8lxhpGYpd6fDJe-Ab2BWoZPSuBR22OZbSPgJn40nr191IVPYF-' +
                                                 'ku71crBQ5Ls8yKNv7y-l0GaIH5-waeTMxUdOeFGCkaO5Sf-EmF7o9hEEAWz3Gx98dIrhOZGf2Dp4wtntqSmpa2Cjbz3KR8Yh8Kzsg__',
 
+            AgencyVacancyDataServicesKey: '8675e1db-9dd4-4134-8bf2-9d57ce1914e8',
+
             ClientEMail: 'charles@serentis.co',
             ClientPassword: 'sql',
 
